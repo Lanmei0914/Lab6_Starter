@@ -112,7 +112,10 @@ function initFormHandler() {
 
   clearSelector.addEventListener("click", clearAll);
   function clearAll() {
-    localStorage.setItem('recipes', JSON.stringify([]));
+    //If we want reinsert after clear we should use code below
+    //localStorage.setItem('recipes', JSON.stringify([]));
+    //Can not reinsert after called clear
+    localStorage.clear();
     const mainSelector = document.querySelector("main");
     mainSelector.innerHTML = ``;
   }
