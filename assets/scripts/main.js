@@ -26,8 +26,11 @@ function getRecipesFromStorage() {
   //           be no more than a few lines.
   //console.log(typeof(JSON.parse(localStorage.getItem('recipes'))));
   //console.log();
-
-  return JSON.parse(localStorage.getItem('recipes'));
+  if (localStorage.getItem('recipes') === null) {
+    return [];
+  } else {
+    return JSON.parse(localStorage.getItem('recipes'));
+  }
 }
 
 /**
@@ -89,7 +92,7 @@ function initFormHandler() {
     recipeCard.data = recipeObject;
     mainSelector.append(recipeCard);
 
-    let recipes = JSON.parse(localStorage.getItem('recipes'));
+    let recipes = getRecipesFromStorage();
     recipes.push(recipeObject);
     saveRecipesToStorage(recipes);
   }
